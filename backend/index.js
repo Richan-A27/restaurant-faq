@@ -7,6 +7,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//Cross-origin resource sharing (CORS)
+const cors = require("cors");
+app.use(cors({
+  origin: "*", // later you can restrict this
+  methods: ["GET", "POST"]
+}));
+
+
 // Initialize the client (Note: no { apiKey: ... } object here)
 const ai = new GoogleGenAI(process.env.GEMINI_API_KEY);
 
@@ -71,4 +79,14 @@ app.post('/chat', async (req, res) => {
     }
 });
 
-app.listen(3000, () => console.log("Server ready on port 3000"));
+// Start the server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+//Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
