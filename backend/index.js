@@ -94,5 +94,5 @@ app.get("/health", (req, res) => {
 
 //
 app.get("/faq", (req, res) => {
-  res.json(faqData);
+  res.json({ message: "FAQ endpoint is active" });
 });
