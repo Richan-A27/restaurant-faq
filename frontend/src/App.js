@@ -71,7 +71,7 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "/faq", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "/chat", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userText, history: apiHistory })
